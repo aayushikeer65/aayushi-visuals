@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --color-ink: #0E0B14;
+  --color-plum: #17121F;
+  --color-gold: #E8B65A;
+  --color-rose: #C98A9B;
+  --color-teal: #6FB6AE;
+
+  /* Re-map existing accent palettes to the refined luxury theme.
+     This retunes every purple-* / cyan-* / amber-* utility site-wide. */
+  --color-purple-300: #d7a9b6;
+  --color-purple-400: #cf9aab;
+  --color-purple-500: #C98A9B;
+  --color-purple-600: #b4788a;
+  --color-purple-700: #9c6577;
+
+  --color-cyan-300: #9ed3cc;
+  --color-cyan-400: #6FB6AE;
+  --color-cyan-500: #579a92;
+
+  --color-amber-200: #f2dcb0;
+  --color-amber-300: #ecca8f;
+  --color-amber-400: #E8B65A;
+  --color-amber-500: #d9a24a;
+
+  --color-fuchsia-500: #C98A9B;
+}
+
+:root {
+  --bg: #0E0B14;
+  --bg-soft: #17121F;
+  --text: #F4EFE9;
+  --text-muted: #A79FB0;
+  --card: rgba(255, 255, 255, 0.035);
+  --card-border: rgba(232, 182, 90, 0.16);
+  --glow: rgba(232, 182, 90, 0.5);
+}
+
+html.light {
+  --bg: #F7F3EC;
+  --bg-soft: #ffffff;
+  --text: #26202B;
+  --text-muted: #6B6470;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-border: rgba(180, 140, 70, 0.22);
+  --glow: rgba(180, 140, 70, 0.35);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(201, 138, 155, 0.10), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 20%, rgba(111, 182, 174, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+
+html.light body {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(201, 138, 155, 0.18), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 20%, rgba(111, 182, 174, 0.15), transparent 60%);
+}
+
+::selection {
+  background: rgba(232, 182, 90, 0.32);
+  color: var(--text);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #E8B65A, #C98A9B);
+  border-radius: 10px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.glass {
+  background: var(--card);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -30px rgba(0, 0, 0, 0.6);
+}
+
+.text-gradient {
+  background: linear-gradient(115deg, #E8B65A 0%, #F0D08A 40%, #C98A9B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-btn {
+  background: linear-gradient(115deg, #E8B65A, #D89A72 55%, #C98A9B);
+  background-size: 200% 200%;
+  color: #1a1410;
+  transition: all 0.45s ease;
+}
+.gradient-btn:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 14px 44px -10px var(--glow);
+  transform: translateY(-2px);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(8deg); }
+}
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+@media (hover: none) {
+  .custom-cursor { display: none !important; }
+}
